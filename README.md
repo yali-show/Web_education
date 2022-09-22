@@ -14,7 +14,7 @@ Flask work 2 💶👱👁‍🗨 ‍️
 
 ### base.py:
 
-for every task created class for get data and format it and give to the view function
+for each task created class for get data and format it and give to the view function
 
 ### db_base.py:
 

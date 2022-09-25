@@ -1,8 +1,17 @@
 # 👨‍💻Web development practise 
 ***
-22.09.2020
+25.09.2022
 
-Flask work 2 💶👱👁‍🗨 ‍️
+Django work 1 🛒🛍
+====
+
+created new app (shop) with small view function in it for render template
+
+***
+
+22.09.2022
+
+Flask work 2 💶👱🏪‍️
 ====
 
 1) get data from database and calculate columns product (UnitPrice * Quantity)

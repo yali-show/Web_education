@@ -1,8 +1,8 @@
 [flake8]
 exclude =
-    .git,
-    __pycache__,
-    venv/,
-    Flask_work1(OOP),
-    Flask_work2(OOP),
-    Django_work1,
+   .git,
+   __pycache__,
+   venv/,
+   Flask_work1(OOP),
+   Flask_work2(OOP),
+   Django_work1,

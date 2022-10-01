@@ -6,3 +6,4 @@ exclude =
     Flask_work1(OOP),
     Flask_work2(OOP),
     Django_work1,
+    .env,

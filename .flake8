@@ -7,3 +7,5 @@ exclude =
     Flask_work2(OOP),
     Django_work1,
     .env,
+    .github,
+    templates,

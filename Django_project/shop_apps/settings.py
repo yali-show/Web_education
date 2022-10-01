@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import environ
+import environ # noqa
 
 env = environ.Env(
     DEBUG=(bool, False)

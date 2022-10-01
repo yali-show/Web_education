@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from items.urls import urlpatterns as items_urlpatterns
+from items.urls import urlpatterns as items_urlpatterns  # noqa
 
 urlpatterns = [
     path('admin/', admin.site.urls),

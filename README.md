@@ -1,5 +1,17 @@
 # 👨‍💻Web development practise 
 ***
+02.10.2022
+
+###Configured CI/CD in GitHub and setup of pushingrules
+####(review code by Flake8)
+
+Django project 🏬🛍💶📲
+===
+
+created apps (shop, items)
+configures superuser, models for internet-market and migrated into sqlite db
+
+***
 25.09.2022
 
 Django work 1 🛒🛍

@@ -1,32 +1,45 @@
+import os
 from django.db import models
+from django.core.validators import MinValueValidator
+from shop.mixins.models_mixins import PKMixin # noqa
 
-# Create your models here.
+
+def upload_to(instance, filename):
+    _name, extencion = os.path.splitext(filename)
+    return f'images/{instance.__class__.__name__.lower()}/' \
+        f'{instance.pk}/image{extencion}'
 
 
-class Item(models.Model):
+class Category(PKMixin):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    image = models.ImageField()
+    image = models.ImageField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f'{self.name} | {self.description}'
 
-class Category(models.Model):
+
+class Item(PKMixin):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    image = models.ImageField()
+    image = models.ImageField(upload_to='items')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    category = models.ForeignKey('items.Category', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.name} | {self.category.name}'
 
 
-class Product(models.Model):
-    price = models.PositiveIntegerField()
-    sku = models.CharField(max_length=255)
+class Product(PKMixin):
+    price = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator]
 
+    )
+    sku = models.CharField(max_length=32, blank=True, null=True)
+    items = models.ManyToManyField(Item)
 
-class Discount(models.Model):
-    amount = models.PositiveIntegerField()
-    code = models.CharField(max_length=255)
-    is_active = models.BooleanField(default=True)
-    discount_type = models.IntegerField(choices=((0, 'money'),
-                                                 (1, 'percents')))
+    def __str__(self):
+        return f'{self.items.name}: {self.price}'

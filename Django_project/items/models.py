@@ -34,6 +34,7 @@ class Item(PKMixin):
 
 
 class Product(PKMixin):
+    name = models.CharField(max_length=255)
     price = models.PositiveSmallIntegerField(
         validators=[MinValueValidator]
 

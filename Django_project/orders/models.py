@@ -1,8 +1,9 @@
-from shop.model_choices import DiscountTypes # noqa
-from shop.mixins.models_mixins import PKMixin # noqa
-from shop.constans import MAX_DIGITS, DECIMAL_PLACES # noqa
+from shop.model_choices import DiscountTypes
+from shop.mixins.models_mixins import PKMixin
+from shop.constans import MAX_DIGITS, DECIMAL_PLACES
 from django.db import models
 from django.contrib.auth import get_user_model
+from decimal import Decimal
 
 User = get_user_model()
 
@@ -18,7 +19,7 @@ class Discount(PKMixin):
     )
 
     def __str__(self):
-        return f'{self.amount} | {self.is_active}'
+        return f'{self.amount} | {bool(self.is_active)}'
 
 
 class Order(PKMixin):
@@ -37,6 +38,15 @@ class Order(PKMixin):
                                  on_delete=models.SET_NULL,
                                  null=True,
                                  blank=True)
+
+    def with_discount(self):
+        if self.discount:
+            if self.discount.discount_type == 1:
+                return self.total_amount - self.discount.amount
+            elif self.discount.discount_type == 0:
+                return (self.total_amount - \
+                          (self.total_amount / 100 * \
+                           self.discount.amount)).quantize(Decimal('.01'))
 
     def __str__(self):
         return f'{self.product.name} | {self.total_amount}'

@@ -41,12 +41,10 @@ class Order(PKMixin):
 
     def with_discount(self):
         if self.discount:
-            if self.discount.discount_type == 1:
+            if self.discount.discount_type == DiscountTypes.Value:
                 return self.total_amount - self.discount.amount
-            elif self.discount.discount_type == 0:
-                return (self.total_amount - \
-                          (self.total_amount / 100 * \
-                           self.discount.amount)).quantize(Decimal('.01'))
+            elif self.discount.discount_type == DiscountTypes.PERCENT:
+                return (self.total_amount - (self.total_amount / 100 * self.discount.amount)).quantize(Decimal('.01'))
 
     def __str__(self):
         return f'{self.product.name} | {self.total_amount}'

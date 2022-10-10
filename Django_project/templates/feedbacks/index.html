@@ -5,15 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<h1>items</h1>
 
-{% for item in items %}
+{% for item in feedbacks %}
     <p>
-        <span>Title: {{ item.name }}</span>
-        <span>Description: {{ item.description }}</span>
-        <span>Category: {{ item.category.name }} </span>
+        <span>User: {{ item.user }}</span>
+        <span>Text: {{ item.text }}</span>
+        <span>Rating: {{ item.rating }}</span>
     </p>
-
 {% endfor %}
 <div>
     <form method="post" enctype="multipart/form-data">
@@ -21,11 +19,9 @@
         {% for field in form %}
             <label>{{ field.label }}</label>
             {{ field }}
-
         {% endfor %}
-        <input type='submit' value="create item">
+        <input type="submit" value="Create feedback">
     </form>
 </div>
-
 </body>
 </html>

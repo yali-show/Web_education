@@ -9,16 +9,6 @@ from shop.mixins.image_mixins import ImageChange
 class ItemAdmin(ImageChange, admin.ModelAdmin):
     list_display = ('name', 'created_at')
 
-    # @admin.display(description='Image')
-    # def show_image(self, instance):
-    #     format_html_join(
-    #         mark_safe('<br>'),
-    #         '{}',
-    #         ((line,) for line in instance.get_full_address()),
-    #     ) or\
-    #     mark_safe("<span class='errors'>I can't"
-    #               " determine this address.</span>")
-
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
